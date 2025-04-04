@@ -33,5 +33,8 @@ Route::prefix('teacher')->controller(TeacherController::class)->group(function (
     Route::post('edit', 'editProfilePost')->name('teacher.edit.post');
     //for teacher logout
     Route::get('logout', 'logout')->name('teacher.logout');
-});
+    // teacher course
+    Route::get('add-course', 'addCourse')->name('teacher.add.course');
+    Route::post('add-course', 'addCoursePost')->name('teacher.add.course.post');
 
+});

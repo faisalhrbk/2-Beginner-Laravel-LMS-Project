@@ -44,4 +44,15 @@ class TeacherController extends Controller
         // here ill edit profile
         return redirect()->back();
     }
+
+
+    //todo teacher course
+    function addCourse()
+    {
+        return view('teacher.add-course');
+    }
+    function addCoursePost()
+    {
+        return redirect()->route('teacher.dashboard')->with('success', 'course added Successfully!');
+    }
 }
