@@ -120,4 +120,9 @@ class TeacherController extends Controller
         };
         return redirect()->route('teacher.dashboard')->with('success', 'course added Successfully!');
     }
+
+    function editCourse( $courseId){
+        $course = Course::findorfail($courseId);
+return view('teacher.add-course', compact('course'))
+    }
 }

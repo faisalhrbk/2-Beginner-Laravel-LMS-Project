@@ -4,15 +4,16 @@
     <br>
     <a href="{{ route('teacher.dashboard') }}">Back to Dashboard</a>
     <hr>
-      @if (session('success'))
-            <p>{{ session('success') }}</p>
-            <hr>
-        @endif
-        @if (session('error'))
-            <p>{{ session('error') }}</p>
-            <hr>
-        @endif
-    <form action="{{ route('teacher.add.course.post') }}" method="POST">
+    @if (session('success'))
+        <p>{{ session('success') }}</p>
+        <hr>
+    @endif
+    @if (session('error'))
+        <p>{{ session('error') }}</p>
+        <hr>
+    @endif
+    <form action="{{ isset($course) ? route('teacher.edit.course', $course->id) : route('teacher.add.course.post') }}"
+        method="POST">
         @csrf
         <label for="title">Course Title:
             <input type="text" name="title" placeholder="Enter Course Title">
