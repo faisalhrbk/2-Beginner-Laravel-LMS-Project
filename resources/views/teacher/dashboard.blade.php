@@ -2,6 +2,14 @@
     <h1>This is Teacher Dashboard page</h1>
     <a href="/">Home</a>
     <hr>
+      @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
 
     <h3>here you can add courses & update your profile</h3>
     <a href="{{ route('teacher.edit') }}">Update Profile</a>

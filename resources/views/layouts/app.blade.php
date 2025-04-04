@@ -12,6 +12,14 @@
     <nav>
         <h1>welcome to LMS Project</h1>
         <hr>
+        @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
         <a href="{{ route('teacher.login') }}">Start as Teacher</a>
         <br>
         <a href="{{ route('student.login') }}">Start as Student</a>

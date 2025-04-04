@@ -2,6 +2,14 @@
 <h1>Teacher Login Page</h1>
 <a href="/">HOME</a>
 <hr>
+  @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
 
 <form action="{{ route('teacher.login.post') }}" method="POST">
     @csrf

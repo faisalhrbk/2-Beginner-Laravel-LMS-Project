@@ -28,7 +28,7 @@ class StudentController extends Controller
         if (!Auth::guard('student')->attempt($cred)) {
             return redirect()->back()->with('error', 'invalid credentials');
         }
-        return redirect()->route('student.dashboard');
+        return redirect()->route('student.dashboard')->with('success', 'login Successfully!');
     }
     function register()
     {
@@ -54,8 +54,10 @@ class StudentController extends Controller
     function logout()
     {
         Auth::guard('student')->logout();
-        return redirect()->route('student.login');
+        return redirect()->route('student.login')->with('success', 'logout Successfully!');
     }
+
+
     function editProfile()
     {
         $student = Auth::guard('student')->user();
@@ -66,7 +68,9 @@ class StudentController extends Controller
 
         $cred = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:students,email' . Auth::guard('student')->id(),
+            'email' => 'required|email|unique:students,email,' . Auth::guard('student')->id(),
+
+
             'age' => 'required|integer|min:10|max:100',
             'address' => 'required|string',
             'class' => 'required',

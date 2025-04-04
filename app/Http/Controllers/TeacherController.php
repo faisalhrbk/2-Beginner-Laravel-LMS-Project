@@ -8,7 +8,6 @@ class TeacherController extends Controller
 {
     function dashboard()
     {
-        //  here ill add checks
         return view('teacher.dashboard');
     }
     function login()

@@ -2,6 +2,14 @@
 <h1>Here you can edit your profile</h1>
 <a href="/">HOME</a>
 <hr>
+  @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
 <p>ill send value later</p>
 <form action="{{ route('teacher.edit.post') }}" method="POST">
     @csrf

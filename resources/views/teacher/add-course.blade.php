@@ -4,6 +4,14 @@
     <br>
     <a href="{{ route('teacher.dashboard') }}">Back to Dashboard</a>
     <hr>
+      @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
     <form action="{{ route('teacher.add.course.post') }}" method="POST">
         @csrf
         <label for="title">Course Title:

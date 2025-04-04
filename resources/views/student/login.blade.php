@@ -3,6 +3,14 @@
 <h1>Student Login Page</h1>
 <a href="/">HOME</a>
 <hr>
+  @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
 
 <form action="{{ route('student.login.post') }}" method="POST">
     @csrf

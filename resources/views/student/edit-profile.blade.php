@@ -2,18 +2,25 @@
 <h1>Here you can edit your profile</h1>
 <a href="/">HOME</a>
 <hr>
-<p>ill send value later</p>
+  @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
 <form action="{{ route('student.edit.post') }}" method="POST">
     @csrf
-    <input type="text" name="name" placeholder="enter your full name">
+    <input type="text" value="{{$student->name}}" name="name" placeholder="enter your full name">
     <br>
-    <input type="email" placeholder="enter your email" name="email">
+    <input type="email" value="{{$student->email}}" placeholder="enter your email" name="email">
     <br>
-    <input type="number" placeholder="enter your age" name="age">
+    <input type="string" value="{{$student->age}}" placeholder="enter your age" name="age">
     <br>
-    <input type="text" placeholder="enter your address" name="address">
+    <input type="text" value="{{$student->address}}" placeholder="enter your address" name="address">
     <br>
-    <input type="number" placeholder="enter your class" name="class">
+    <input type="string" value="{{$student->class}}" placeholder="enter your class" name="class">
     <br>
     <p>sorry rn you can't update password</p>
     {{-- <input type="password" placeholder="create  your password" name="password">

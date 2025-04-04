@@ -2,6 +2,14 @@
 <h1>Student's Register Page</h1>
 <a href="/">HOME</a>
 <hr>
+  @if (session('success'))
+            <p>{{ session('success') }}</p>
+            <hr>
+        @endif
+        @if (session('error'))
+            <p>{{ session('error') }}</p>
+            <hr>
+        @endif
 
 <form action="{{ route('student.register.post') }}" method="POST">
     <h1></h1>
