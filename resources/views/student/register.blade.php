@@ -1,6 +1,6 @@
-<h1>Student's Page</h1>
+<h1>Student's Register Page</h1>
 
-<form action="{{route('student.create')}}" method="POST">
+<form action="{{route('student.register.post')}}" method="POST">
     <h1></h1>
     @csrf
     <input type="text" name="name" placeholder="enter your full name">
@@ -10,4 +10,4 @@
     <button type="submit">Register</button>
 </form>
 <br>
-<p>New Here! <a href=""></a></p>
+<p>Already Have an Account <a href="{{route('student.login')}}">Login Here</a></p>
