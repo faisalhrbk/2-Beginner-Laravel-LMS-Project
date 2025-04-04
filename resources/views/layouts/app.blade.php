@@ -10,7 +10,7 @@
 
 <body>
     <nav>
-
+        <h1>welcome to LMS Project</h1>
         <a href="/">HOME</a>
         <a href="{{ route('teacher.index') }}">Start as Teacher</a>
         <a href="{{ route('student.index') }}">Start as Student</a>
