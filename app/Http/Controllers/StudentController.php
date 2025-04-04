@@ -3,39 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDO;
 
 class StudentController extends Controller
 {
-    function dashboard(){
+    function dashboard()
+    {
         //  here ill add checks
         return view('student.dashboard');
     }
-    function login(){
+    function login()
+    {
         return view('student.login');
     }
-    function loginPost(){
-        //here ill add checks
+    function loginPost(Request $request)
+    {
+        $cred = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:3'
+        ]);
+
+        if (!Auth::guard('student')->attempt($cred)) {
+            return redirect()->back()->with('error', 'invalid credentials');
+        }
         return redirect()->route('student.dashboard');
     }
-    function register(){
+    function register()
+    {
         return view('student.register');
     }
-    function registerPost(){
+    function registerPost()
+    {
         //here ill register
 
         return redirect()->route('student.login');
     }
-    function logout(){
+    function logout()
+    {
         //here ill logout him
         return redirect()->route('student.dashboard');
-
     }
-    function editProfile(){
+    function editProfile()
+    {
         return view('student.edit-profile');
-
     }
-    function editProfilePost(){
+    function editProfilePost()
+    {
         // here ill edit profile
         return redirect()->back();
     }

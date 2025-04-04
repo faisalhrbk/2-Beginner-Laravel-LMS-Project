@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->unsignedBigInteger('category');
+            $table->string('category');
             $table->decimal('price', 8, 2)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->text('description')->nullable();
