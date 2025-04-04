@@ -10,6 +10,7 @@ class TeacherController extends Controller
 {
     function dashboard()
     {
+        $courses = 
         return view('teacher.dashboard');
     }
 
@@ -67,18 +68,20 @@ class TeacherController extends Controller
     function editProfile()
     {
         $teacher = Auth::guard('teacher')->user();
+
         return view('teacher.edit-profile', compact('teacher'));
     }
 
 
     function editProfilePost(Request $request)
     {
+
         $cred = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:students,email,' . Auth::guard('student')->id(),
+            'email' => 'required|email|unique:teachers,email,' . Auth::guard('teacher')->id(),
             'address' => 'required|string',
-
         ]);
+
         $teacher = Auth::guard('teacher')->user();
         if (!$teacher->update($cred)) {
             return redirect()->back()->with('error', 'update fail');
@@ -94,6 +97,7 @@ class TeacherController extends Controller
     }
     function addCoursePost()
     {
+
         return redirect()->route('teacher.dashboard')->with('success', 'course added Successfully!');
     }
 }
