@@ -1,13 +1,16 @@
 <h1>Student's Register Page</h1>
 
-<form action="{{route('student.register.post')}}" method="POST">
+<form action="{{ route('student.register.post') }}" method="POST">
     <h1></h1>
     @csrf
     <input type="text" name="name" placeholder="enter your full name">
     <input type="email" placeholder="enter your email" name="email">
+    <input type="number" placeholder="enter your age" name="age">
+    <input type="text" placeholder="enter your address" name="address">
+    <input type="number" placeholder="enter your class" name="class">
     <input type="password" placeholder="create  your password" name="password">
-    <input type="password" name="password_confirmation" >
+    <input type="password" name="password_confirmation">
     <button type="submit">Register</button>
 </form>
 <br>
-<p>Already Have an Account <a href="{{route('student.login')}}">Login Here</a></p>
+<p>Already Have an Account <a href="{{ route('student.login') }}">Login Here</a></p>
