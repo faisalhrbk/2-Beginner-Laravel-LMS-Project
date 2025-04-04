@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,9 @@ class TeacherController extends Controller
 {
     function dashboard()
     {
-        $courses = 
+        $teacher_id = Auth::guard('teacher')->user()->id;
+        $courses = Course::where('teacher_id', $teacher_id);
+        return $courses;
         return view('teacher.dashboard');
     }
 
