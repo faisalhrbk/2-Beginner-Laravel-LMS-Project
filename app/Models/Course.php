@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
@@ -12,4 +13,8 @@ class Course extends Model
     public $guarded = [];
     public $timestamps = false;
 
+    function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 }

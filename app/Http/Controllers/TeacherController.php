@@ -6,15 +6,20 @@ use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDO;
 
 class TeacherController extends Controller
 {
     function dashboard()
     {
-        $teacher_id = Auth::guard('teacher')->user()->id;
-        $courses = Course::where('teacher_id', $teacher_id);
-        return $courses;
-        return view('teacher.dashboard');
+        // $teacher_id = Auth::guard('teacher')->user()->id;
+        // $courses = Course::where('teacher_id', $teacher_id)->get();
+        //todo simple method its called laravel magic
+        $teacher = Auth::guard('teacher')->user();
+        $courses = $teacher->courses;
+
+
+        return view('teacher.dashboard', compact('courses'));
     }
 
 
@@ -98,9 +103,21 @@ class TeacherController extends Controller
     {
         return view('teacher.add-course');
     }
-    function addCoursePost()
+    function addCoursePost(Request $request)
     {
 
+        $course = $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|in:computer,biology,arts,engineering',
+            'price' => 'required|integer',
+            'status' => 'required|in:active,inactive',
+            'description' => 'required|string'
+        ]);
+        $course['teacher_id'] = Auth::guard('teacher')->id();
+        Course::create($course);
+        if (!Course::create($course)) {
+            return redirect()->back()->with('error', 'invalid fields while adding course');
+        };
         return redirect()->route('teacher.dashboard')->with('success', 'course added Successfully!');
     }
 }
