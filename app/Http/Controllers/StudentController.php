@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDO;
@@ -33,24 +34,48 @@ class StudentController extends Controller
     {
         return view('student.register');
     }
-    function registerPost()
+    function registerPost(Request $request)
     {
-        //here ill register
+        $cred = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:students,email',
+            'age' => 'required|integer|min:10|max:100',
+            'address' => 'required|string',
+            'class' => 'required',
+            'password' => 'required|confirmed',
 
-        return redirect()->route('student.login');
+        ]);
+        $cred['password'] = bcrypt($cred['password']);
+        if (!Student::create($cred)) {
+            return redirect()->back()->with('error', 'failed to register! try again');
+        };
+        return redirect()->route('student.login')->with('success', 'registration successfully! now you can login');
     }
     function logout()
     {
-        //here ill logout him
-        return redirect()->route('student.dashboard');
+        Auth::guard('student')->logout();
+        return redirect()->route('student.login');
     }
     function editProfile()
     {
-        return view('student.edit-profile');
+        $student = Auth::guard('student')->user();
+        return view('student.edit-profile', compact('student'));
     }
-    function editProfilePost()
+    function editProfilePost(Request $request)
     {
-        // here ill edit profile
-        return redirect()->back();
+
+        $cred = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:students,email' . Auth::guard('student')->id(),
+            'age' => 'required|integer|min:10|max:100',
+            'address' => 'required|string',
+            'class' => 'required',
+
+        ]);
+        $student = Auth::guard('student')->user();
+        if (!$student->update($cred)) {
+            return redirect()->back()->with('error', 'update fail');
+        }
+        return redirect()->route('student.dashboard')->with('success', 'Credentials update Successfully!');
     }
 }
