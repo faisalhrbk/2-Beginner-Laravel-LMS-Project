@@ -14,10 +14,14 @@ class StudentController extends Controller
         //  here ill add checks
         return view('student.dashboard');
     }
+
+
     function login()
     {
         return view('student.login');
     }
+
+
     function loginPost(Request $request)
     {
         $cred = $request->validate([
@@ -30,10 +34,14 @@ class StudentController extends Controller
         }
         return redirect()->route('student.dashboard')->with('success', 'login Successfully!');
     }
+
+
     function register()
     {
         return view('student.register');
     }
+
+
     function registerPost(Request $request)
     {
         $cred = $request->validate([
@@ -51,6 +59,8 @@ class StudentController extends Controller
         };
         return redirect()->route('student.login')->with('success', 'registration successfully! now you can login');
     }
+
+
     function logout()
     {
         Auth::guard('student')->logout();
@@ -63,9 +73,10 @@ class StudentController extends Controller
         $student = Auth::guard('student')->user();
         return view('student.edit-profile', compact('student'));
     }
+
+
     function editProfilePost(Request $request)
     {
-
         $cred = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:students,email,' . Auth::guard('student')->id(),
