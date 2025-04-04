@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Teacher;
+
 return [
 
     /*
@@ -40,6 +42,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
     ],
 
     /*
@@ -63,6 +73,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teacher::class
+        ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teacher::class
         ],
 
         // 'users' => [
