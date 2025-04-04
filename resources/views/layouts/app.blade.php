@@ -17,6 +17,16 @@
         <a href="{{ route('student.login') }}">Start as Student</a>
 
     </nav>
+
+    <p style="margin-top:30vh; italic;">
+        <hr>THIS IS PROJECT IS BUILT IN VANILLA HTML TO UNDERSTAND BASIC CORE
+        CONCEPTS OF LARAVEL INCLUDING:
+    <ul style="text-align:start">
+        <li>CRUD OPERATIONS</li>
+        <li>RELATIONSHIPS</li>
+        <li> AUTHENTICATION USING AUTH CLASS</li>
+    </ul>
+    </p>
 </body>
 
 </html>

@@ -3,10 +3,10 @@
     <a href="/">Home</a>
     <hr>
 
-    <h3>here you can add courses update your profile </h3>
+    <h3>here you can add courses & update your profile</h3>
     <a href="{{ route('teacher.edit') }}">Update Profile</a>
     <br>
-    <p>Add Course for Students: <a href="{{route('teacher.add.course')}}">Add</a></p>
+    <p>Add Course for Students: <a href="{{ route('teacher.add.course') }}">Add</a></p>
 
     <h2>Here are Courses that You have Add!</h2>
     <div>
