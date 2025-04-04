@@ -8,12 +8,13 @@
     <title>LMS App</title>
 </head>
 
-<body>
+<body style="text-align: center">
     <nav>
         <h1>welcome to LMS Project</h1>
-        <a href="/">HOME</a>
-        <a href="{{ route('teacher.index') }}">Start as Teacher</a>
-        <a href="{{ route('student.index') }}">Start as Student</a>
+        <hr>
+        <a href="{{ route('teacher.login') }}">Start as Teacher</a>
+        <br>
+        <a href="{{ route('student.login') }}">Start as Student</a>
 
     </nav>
 </body>

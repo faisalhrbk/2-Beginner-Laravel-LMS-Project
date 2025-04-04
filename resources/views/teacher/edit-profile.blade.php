@@ -3,7 +3,7 @@
 <a href="/">HOME</a>
 <hr>
 <p>ill send value later</p>
-<form action="{{ route('student.edit.post') }}" method="POST">
+<form action="{{ route('teacher.edit.post') }}" method="POST">
     @csrf
     <input type="text" name="name" placeholder="enter your full name">
     <br>
@@ -13,8 +13,6 @@
     <br>
     <input type="text" placeholder="enter your address" name="address">
     <br>
-    <input type="number" placeholder="enter your class" name="class">
-    <br>
     <p>sorry rn you can't update password</p>
     {{-- <input type="password" placeholder="create  your password" name="password">
     <input type="password" name="password_confirmation" placeholder="confirm password"> --}}
@@ -22,5 +20,5 @@
     <button type="submit">Update Details</button>
 </form>
 <br>
-<p><a href="{{route('student.dashboard')}}">Back to Dashboard</a></p>
+<p><a href="{{route('teacher.dashboard')}}">Back to Dashboard</a></p>
 </div>
