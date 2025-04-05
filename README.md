@@ -1,9 +1,3 @@
-# Laravel LMS (Learning Management System) with Multi-Role Login – Beginner Friendly, **Not a Single Line of CSS**
-
-A simple, clean, and beginner-friendly Laravel LMS project using **vanilla HTML +  Laravel Blade**. Built for students who want to **learn Laravel** without frontend distractions. Supports **Admin, Teacher, and Student login** with separate dashboards.
-
----
-
 # Laravel LMS (Learning Management System) – Multi-Guard Auth | Scopes | Beginner-Friendly | Pure Laravel Blade
 
 A beginner-focused Laravel Learning Management System (LMS) built with **vanilla HTML + Laravel Blade**, supporting **multi-auth guards** and **role-based access** for Admin, Teacher, and Student. Perfect for Laravel beginners practicing backend development.
