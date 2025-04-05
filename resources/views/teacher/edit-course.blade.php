@@ -12,7 +12,7 @@
         <p>{{ session('error') }}</p>
         <hr>
     @endif
-    <form action="{{ route('teacher.add.course.post') }}"
+    <form action="{{ route('teacher.edit.course.post') }}"
         method="POST">
         @csrf
         <label for="title">Course Title:

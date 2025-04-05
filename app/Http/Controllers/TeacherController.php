@@ -123,6 +123,6 @@ class TeacherController extends Controller
 
     function editCourse( $courseId){
         $course = Course::findorfail($courseId);
-return view('teacher.add-course', compact('course'))
+return view('teacher.add-course', compact('course'));
     }
 }

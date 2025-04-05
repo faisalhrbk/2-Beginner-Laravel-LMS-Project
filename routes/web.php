@@ -36,7 +36,7 @@ Route::prefix('teacher')->controller(TeacherController::class)->group(function (
     // teacher course
     Route::get('add-course', 'addCourse')->name('teacher.add.course');
     Route::post('add-course', 'addCoursePost')->name('teacher.add.course.post');
-    Route::get('edit-course/{$id}', 'editCourse')->name('teacher.edit.course');
+    Route::get('edit-course/{$id}', 'editCourse')->name('teacher.course.edit');
     Route::post('edit-course/{$id}', 'editCoursePost')->name('teacher.edit.course.post');
-    Route::delete('delete-course/{$id}', 'deleteCourse')->name('teacher.delete.course');
+    Route::delete('delete-course/{$id}', 'deleteCourse')->name('teacher.course.delete');
 });
