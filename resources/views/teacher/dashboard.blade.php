@@ -16,34 +16,32 @@
     <br>
     <p>Add Course for Students: <a href="{{ route('teacher.course.add') }}">Add</a></p>
 
-    <h2>Here are Courses that You have Add!</h2>
- 
+    <h1>Here are Courses that You have Add!</h1>
 
-        @forelse ($courses as $course)
-            <ul style="padding: 15px; list-style: none; max-width: 500px;">
-                <li><strong>📘 Title:</strong> {{ $course->title }}</li>
-                <li><strong>Category:</strong> {{ $course->category }}</li>
-                <li><strong>Price:</strong> Rs {{ $course->price }}</li>
-                <li><strong>Status:</strong> {{ ucfirst($course->status) }}</li>
-                <li><strong>Description:</strong> {{ $course->description }}</li>
+    @forelse ($courses as $course)
+     
+            <p><strong>📘 Title:</strong> {{ $course->title }}</p>
+            <p><strong>Category:</strong> {{ $course->category }}</p>
+            <p><strong>Price:</strong> Rs {{ $course->price }}</p>
+            <p><strong>Status:</strong> {{ ucfirst($course->status) }}</p>
+            <p><strong>Description:</strong> {{ $course->description }}</p>
 
-                <button>
-                    <a href="{{ route('teacher.course.edit', $course->id) }}" >Edit Course</a>
+            <button>
+                <a href="{{ route('teacher.course.edit', $course->id) }}">Edit Course</a>
+            </button>
+            <form action="{{ route('teacher.course.delete', $course->id) }}" method="POST" style="display:inline; ">
+                @csrf
+                @method('DELETE')
+                <button style="background:red" type="submit"
+                    onclick="return confirm('Are you sure you want to delete this course?')">
+                    Delete Course
                 </button>
-                <form action="{{ route('teacher.course.delete', $course->id) }}" method="POST" style="display:inline; ">
-                    @csrf
-                    @method('DELETE')
-                    <button style="background:red" type="submit" onclick="return confirm('Are you sure you want to delete this course?')">
-                        Delete Course
-                    </button>
-                </form>
+            </form>
+    
 
-            @empty
-                <p>No courses found.</p>
-        @endforelse
-
+        @empty
+            <p>No courses found.</p>
+    @endforelse
 
     <hr>
     <a href="{{ route('teacher.logout') }}">Logout!</a>
-
-</div>
