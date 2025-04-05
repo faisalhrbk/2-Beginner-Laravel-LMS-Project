@@ -14,7 +14,7 @@
     @endif
 
     <h3>Here are List of Available Courses! You can Enroll in Courses as much as you want </h3>
-    <h4>apply filters</h4>
+    <h2 style="text-align: end">apply filters</h2>
     @forelse ($courses as $course)
         <h4>teacher Name: <strong>{{ $course->teacher->name }}</strong></h4>
         <p><strong>📘 Title:</strong> {{ $course->title }}</p>
@@ -22,7 +22,11 @@
         <p><strong>Price:</strong> Rs {{ $course->price }}</p>
         <p><strong>Status:</strong> {{ ucfirst($course->status) }}</p>
         <p><strong>Description:</strong> {{ $course->description }}</p>
-        <button><a href="{{ route('student.enroll.course', $course->id) }}">Enroll in Course</a></button>
+        <form action="{{ route('student.course.enroll', $course->id) }}" method="POST">
+            @csrf
+            <button type="submit" style="padding: 4px; background-color:yellow">Enroll in Course</button>
+        </form>
+
     @empty
         <p>No courses found.</p>
     @endforelse

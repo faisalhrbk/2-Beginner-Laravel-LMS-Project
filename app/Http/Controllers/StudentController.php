@@ -103,7 +103,7 @@ class StudentController extends Controller
         return view('student.courses' , compact('courses'));
     }
     function enrollCourse($courseId){
-
+return 'sabar rakh add krta hu';
     }
     function removeCourse(){
 
