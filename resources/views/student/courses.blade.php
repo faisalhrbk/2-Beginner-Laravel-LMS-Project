@@ -24,7 +24,7 @@
         <p><strong>Description:</strong> {{ $course->description }}</p>
         <form action="{{ route('student.course.enroll', $course->id) }}" method="POST">
             @csrf
-            <button type="submit" style="padding: 4px; background-color:yellow">Enroll in Course</button>
+            <button type="submit" style="padding: 4px; background-color:yellow; cursor:pointer">Enroll in Course</button>
         </form>
 
     @empty

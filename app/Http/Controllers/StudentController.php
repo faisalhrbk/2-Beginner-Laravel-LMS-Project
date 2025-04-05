@@ -100,12 +100,22 @@ class StudentController extends Controller
     {
         // here  i sent course with associate teacher  just send teacher name and id
         $courses = Course::with('teacher:name,id')->get();
-        return view('student.courses' , compact('courses'));
+        return view('student.courses', compact('courses'));
     }
-    function enrollCourse($courseId){
-return 'sabar rakh add krta hu';
-    }
-    function removeCourse(){
+    function enrollCourse($courseId)
+    {
+        $student = Auth::guard('student')->user();
+        if ($student->courses()->where('course_id', $courseId)->exists()) {
+            return redirect()->back()->with('error', 'Already enrolled in this course!');
+        }
+        $student->courses()->attach($courseId);
 
+        return redirect()->route('student.dashboard')->with('success', 'Course enrolled successfully!');
+    }
+    function removeCourse($courseId)
+    {
+        $student = Auth::guard('student')->user();
+        $student->courses->detach($courseId);
+        return redirect()->back()->with('success', 'course removed success');
     }
 }
