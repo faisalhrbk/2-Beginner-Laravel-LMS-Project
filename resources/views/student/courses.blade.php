@@ -14,7 +14,33 @@
     @endif
 
     <h3>Here are List of Available Courses! You can Enroll in Courses as much as you want </h3>
-    <h2 style="text-align: end">apply filters</h2>
+    <h2 >Apply Filters</h2>
+    <form action="{{ route('student.courses') }}" method="GET">
+    <label for="category">Category:</label>
+    <select name="category" id="category">
+        <option value="">Select Category</option>
+        <option value="computer" {{ request('category') == 'computer' ? 'selected' : '' }}>Computer</option>
+        <option value="biology" {{ request('category') == 'biology' ? 'selected' : '' }}>Biology</option>
+        <option value="arts" {{ request('category') == 'arts' ? 'selected' : '' }}>Arts</option>
+        <option value="engineering" {{ request('category') == 'engineering' ? 'selected' : '' }}>Engineering</option>
+    </select>
+
+    <label for="price_min">Min Price:</label>
+    <input type="number" name="price_min" min="0" value="{{ request('price_min') }}" placeholder="Min Price">
+
+    <label for="price_max">Max Price:</label>
+    <input type="number" name="price_max" min="0" value="{{ request('price_max') }}" placeholder="Max Price">
+
+    <label for="status">Status:</label>
+    <select name="status" id="status">
+        <option value="">Select Status</option>
+        <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
+        <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
     @forelse ($courses as $course)
         <h4>teacher Name: <strong>{{ $course->teacher->name }}</strong></h4>
         <p><strong>📘 Title:</strong> {{ $course->title }}</p>

@@ -97,10 +97,30 @@ class StudentController extends Controller
     }
 
     //for courses
-    function course()
+    function course(Request $request)
     {
         // here  i sent course with associate teacher  just send teacher name and id
-        $courses = Course::with('teacher:name,id')->get();
+        // $courses = Course::with('teacher:name,id')->get();
+
+
+        // now i use filters here
+
+        $query = Course::with('teacher:name,id');
+        if ($request->has('category') && $request->category != '') {
+            $query->where('category', $request->category);
+        }
+        if ($request->has('price_min') && $request->price_min != '') {
+            $query->where('price', '>=', $request->price_min);
+        }
+
+        if ($request->has('price_max') && $request->price_max != '') {
+            $query->where('price', '<=', $request->price_max);
+        }
+
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+        $courses = $query->get();
         return view('student.courses', compact('courses'));
     }
     function enrollCourse($courseId)
@@ -121,6 +141,4 @@ class StudentController extends Controller
         $student->courses()->detach($courseId);
         return redirect()->back()->with('success', 'course removed success');
     }
-
-    //filters 
 }
