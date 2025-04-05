@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use PDO;
+use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDO;
 
 class StudentController extends Controller
 {
@@ -92,5 +93,19 @@ class StudentController extends Controller
             return redirect()->back()->with('error', 'update fail');
         }
         return redirect()->route('student.dashboard')->with('success', 'Credentials update Successfully!');
+    }
+
+    //for courses
+    function course()
+    {
+        // here  i sent course with associate teacher  just send teacher name and id
+        $courses = Course::with('teacher:name,id')->get();
+        return view('student.courses' , compact('courses'));
+    }
+    function enrollCourse($courseId){
+
+    }
+    function removeCourse(){
+
     }
 }

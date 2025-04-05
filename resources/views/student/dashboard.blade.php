@@ -15,7 +15,7 @@
 <h3>here can you enroll in courses update your profile </h3>
  <a href="{{ route('student.edit') }}">Update Profile</a>
 <br>
-<p>Enroll in a Course <a href="#">enroll Now</a></p>
+<p>Enroll in a Course <a href="{{route('student.courses')}}">enroll Now</a></p>
 <h1>Courses you are Enrolled In</h1>
 <hr>
 <a href="{{ route('student.logout') }}">Logout!</a>

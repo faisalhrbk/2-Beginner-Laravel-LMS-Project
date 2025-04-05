@@ -19,6 +19,10 @@ Route::prefix('student')->controller(StudentController::class)->group(function (
     Route::post('edit', 'editProfilePost')->name('student.edit.post');
     //for student logout
     Route::get('logout', 'logout')->name('student.logout');
+
+    // for student course
+    Route::get('courses-list', 'course')->name('student.courses');
+    Route::post('courses-enroll', 'enrollCourse')->name('student.enroll.course');
 });
 
 //todo Teacher Routes
