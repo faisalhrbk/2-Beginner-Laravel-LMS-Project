@@ -23,6 +23,8 @@ Route::prefix('student')->controller(StudentController::class)->group(function (
     // for student course
     Route::get('courses-list', 'course')->name('student.courses');
     Route::post('courses-enroll/{id}', 'enrollCourse')->name('student.course.enroll');
+    Route::post('remove-course/{id}', 'removeCourse')->name('student.remove.course.post');
+
 });
 
 //todo Teacher Routes

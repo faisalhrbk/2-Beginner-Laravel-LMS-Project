@@ -12,8 +12,9 @@ class StudentController extends Controller
 {
     function dashboard()
     {
-        //  here ill add checks
-        return view('student.dashboard');
+        $student = Auth::guard('student')->user();
+        $courses =  $student->courses;
+        return view('student.dashboard', compact('courses'));
     }
 
 
@@ -112,10 +113,14 @@ class StudentController extends Controller
 
         return redirect()->route('student.dashboard')->with('success', 'Course enrolled successfully!');
     }
+
+
     function removeCourse($courseId)
     {
         $student = Auth::guard('student')->user();
-        $student->courses->detach($courseId);
+        $student->courses()->detach($courseId);
         return redirect()->back()->with('success', 'course removed success');
     }
+
+    //filters 
 }
