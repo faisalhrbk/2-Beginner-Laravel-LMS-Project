@@ -121,8 +121,34 @@ class TeacherController extends Controller
         return redirect()->route('teacher.dashboard')->with('success', 'course added Successfully!');
     }
 
-    function editCourse( $courseId){
+
+    function editCourse($courseId)
+    {
         $course = Course::findorfail($courseId);
-return view('teacher.add-course', compact('course'));
+        return view('teacher.edit-course', compact('course'));
+    }
+
+
+    function editCoursePost(Request $request, $id)
+    {
+
+        $data = $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|in:computer,biology,arts,engineering',
+            'price' => 'required',
+            'status' => 'required|in:active,inactive',
+            'description' => 'required|string'
+        ]);
+        $course = Course::findorfail($id);
+        if (! $course->update($data)) {
+            return redirect()->back()->with('error', 'error updating course');
+        }
+        return redirect()->route('teacher.dashboard')->with('success', 'course has been updated Successfully!');
+    }
+
+    function deleteCourse($id)
+    {
+        Course::destroy($id);
+        return redirect()->route('teacher.dashboard')->with('success', 'courses deleted successfully');
     }
 }

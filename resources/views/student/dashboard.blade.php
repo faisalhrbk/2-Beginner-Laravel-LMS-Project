@@ -16,6 +16,7 @@
  <a href="{{ route('student.edit') }}">Update Profile</a>
 <br>
 <p>Enroll in a Course <a href="#">enroll Now</a></p>
+<h1>Courses you are Enrolled In</h1>
+<hr>
 <a href="{{ route('student.logout') }}">Logout!</a>
-
 </div>
